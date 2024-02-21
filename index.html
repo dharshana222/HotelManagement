@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Management System</title>
+  <style>
+    /* Basic styling */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    tr:hover {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Hotel Management System</h2>
+  <table id="bookingTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Room Type</th>
+        <th>Check-in Date</th>
+        <th>Check-out Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Booking data will be inserted here -->
+    </tbody>
+  </table>
+  <hr>
+  <h3>Add New Booking</h3>
+  <form id="bookingForm">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" required><br>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br>
+    <label for="roomType">Room Type:</label><br>
+    <select id="roomType" name="roomType" required>
+      <option value="Single">Single</option>
+      <option value="Double">Double</option>
+      <option value="Suite">Suite</option>
+    </select><br>
+    <label for="checkInDate">Check-in Date:</label><br>
+    <input type="date" id="checkInDate" name="checkInDate" required><br>
+    <label for="checkOutDate">Check-out Date:</label><br>
+    <input type="date" id="checkOutDate" name="checkOutDate" required><br><br>
+    <input type="submit" value="Submit">
+  </form>
+</div>
+
+<script>
+  // Function to handle form submission
+  document.getElementById('bookingForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+    
+    // Get form values
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var roomType = document.getElementById('roomType').value;
+    var checkInDate = document.getElementById('checkInDate').value;
+    var checkOutDate = document.getElementById('checkOutDate').value;
+    
+    // Create a new row with the form values
+    var newRow = document.createElement('tr');
+    newRow.innerHTML = `
+      <td>${name}</td>
+      <td>${email}</td>
+      <td>${roomType}</td>
+      <td>${checkInDate}</td>
+      <td>${checkOutDate}</td>
+    `;
+    
+    // Append the new row to the table
+    document.getElementById('bookingTable').getElementsByTagName('tbody')[0].appendChild(newRow);
+    
+    // Clear the form fields after submission
+    document.getElementById('bookingForm').reset();
+  });
+</script>
+
+</body>
+</html>
